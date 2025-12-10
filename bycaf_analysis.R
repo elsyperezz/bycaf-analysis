@@ -16,4 +16,4 @@ df_creek_name <- bycaf_data %>%
   summarize(Total = n()) %>%
   arrange(-Total)
 
-head(df_creek_name, 5)
+
