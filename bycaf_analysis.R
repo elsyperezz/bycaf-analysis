@@ -8,7 +8,6 @@ library("readxl")
 bycaf_data<- read_excel("bycaf_data.xlsx")
 
 # Frequency of Creek Name --------------------------------
-
 df_creek_name <- bycaf_data %>%
   mutate(Creek_Name_B1a = str_split(Creek_Name_B1a, ", ")) %>%
   unnest(Creek_Name_B1a) %>%
