@@ -133,9 +133,22 @@ head(df_ecosystem_services, 5)
 
 ## -------- Calculate averages ------------------------
 #average age of respondents
-#lowest, #highest
+mean(bycaf_data$Age_A1, na.rm = TRUE)
+
+#lowest
+min(bycaf_data$Age_A1, na.rm = TRUE)
+
+#highest
+max(bycaf_data$Age_A1, na.rm = TRUE)
 
 #average length of time living in the area
+mean(bycaf_data$Years_Of_Living_In_Area_A5, na.rm=TRUE)
+
+#shortest length of time living in the area
+min(bycaf_data$Years_Of_Living_In_Area_A5, na.rm = TRUE)
+
+#longest length of time living in the area
+max(bycaf_data$Years_Of_Living_In_Area_A5, na.rm = TRUE)
 
 ## -------- Calculate ratios ------------------------
 #gender ratio
