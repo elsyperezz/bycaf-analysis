@@ -1,12 +1,14 @@
 #bycaf.analysis.R
+install.packages("ggmosaic", repos = c('https://haleyjeppson.r-universe.dev', 'https://cloud.r-project.org')) #use this since it has been archived from R 4.4
 
 ## Attach packages -------------------
 library("tidyverse")
 library("readxl")
+library("ggpubr")
+library("ggmosaic")
 
 ## Attach data -------------------
-bycaf_data<- read_excel("bycaf_data.xlsx")
-
+bycaf_data<- read_excel("bycaf_data.xlsx", na = c("", "NA"))
 file_path <- "C:/Users/elsy.perez/Documents/GitHub/bycaf-analysis/bycaf_data.xlsx"
 
 ## Read sheets -------------------
@@ -128,3 +130,47 @@ df_ecosystem_services <- b5map_data %>%
   arrange(-Total)
 
 head(df_ecosystem_services, 5)
+
+## -------- Calculate averages ------------------------
+#average age of respondents
+#lowest, #highest
+
+#average length of time living in the area
+
+## -------- Calculate ratios ------------------------
+#gender ratio
+#ratio of area of residence
+#ratio of knowing the creek
+#visit frequency ratio
+
+## -------- Visualizations ------------------------
+#Boxplot of age vs value
+age_value_boxplot <- bycaf_data %>%
+  mutate(Value_B4 = str_split(Value_B4, ",")) %>%
+  unnest(Value_B4) %>%
+  group_by(Value_B4)
+ggplot(age_value_boxplot, aes(x = `Value_B4`, y = `Age_A1`)) +
+  geom_boxplot(fill = "#457888", color = "black") +
+  theme_pubclean() +
+  labs(x = "Value of Creek", y = "Age") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+#X2TOI use by gender
+b5map_data
+table(b5map_data$Gender, b5map_data$Revised_Use)
+chisq.test(table(b5map_data$Gender, b5map_data$Revised_Use))
+
+#Mosaic plot - use vs gender
+ggplot(b5map_data) +
+  geom_mosaic(color = "white", aes(x = product(Gender), fill = Revised_Use)) +
+  theme_pubclean() + 
+  labs(x = "Gender", y = "Use of Creek")
+
+#Barplot - gender vs use
+ggplot(b5map_data, aes(x = Gender, y = Revised_Use)) +
+  geom_col(fill = "#457888", color = "white") +
+  theme_pubclean()
+
+#Mosaic Plot/Grouped Bar Plot/X2TOI - area of residence (explanatory), use (response) - Are there differences in creek use or perception in the different communities?
+#Mosaic Plot/Grouped Bar Plot/X2TOI - occupation (explanatory), appreciation (response) *
+  
