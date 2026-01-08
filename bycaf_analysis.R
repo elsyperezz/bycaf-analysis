@@ -252,7 +252,12 @@ table(b5map_data$Area_Residence, b5map_data$Revised_Use)
 chisq.test(table(b5map_data$Area_Residence, b5map_data$Revised_Use))
 
 #Mosaic Plot/Grouped Bar Plot/X2TOI - occupation (explanatory), appreciation (response) *
-ggplot(bycaf_data) +
+appreciation_CICES <- bycaf_data %>%
+  mutate(Revised_Appreciation_CICES = str_split(Revised_Appreciation_CICES, ", ")) %>%
+  unnest(Revised_Appreciation_CICES) %>%
+  group_by(Revised_Appreciation_CICES)
+
+ggplot(appreciation_CICES) +
   geom_mosaic(color = "white", aes(x = product(Revised_Appreciation_CICES), fill = Occupation_Class)) +
   theme_pubclean() + 
   labs(x = "Appreciation of Creek", y = "Occupation of Residents") +
@@ -263,11 +268,6 @@ ggplot(bycaf_data) +
   )
 
 #grouped barplot^
-appreciation_CICES <- bycaf_data %>%
-  mutate(Revised_Appreciation_CICES = str_split(Revised_Appreciation_CICES, ", ")) %>%
-  unnest(Revised_Appreciation_CICES) %>%
-  group_by(Revised_Appreciation_CICES)
-  
 ggplot(appreciation_CICES, aes(x = Revised_Appreciation_CICES, y = Occupation_Class, fill = Occupation_Class)) +
   geom_bar(stat = "identity") +
   labs(title = "Appreciation by Occupation",
