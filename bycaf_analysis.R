@@ -236,10 +236,6 @@ ggplot(b5map_data) +
   )
 
 #barplot^
-ggplot(b5map_data, aes(x = Area_Residence, y = Revised_Use)) +
-  geom_col(fill = "#457888", color = "white") +
-  theme_pubclean()
-
 ggplot(b5map_data, aes(x = Area_Residence, y = Revised_Use, fill = Revised_Use)) +
   geom_bar(stat = "identity") +
   labs(title = "Use by Area of Residence",
