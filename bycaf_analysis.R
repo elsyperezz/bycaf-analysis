@@ -275,23 +275,22 @@ ggplot(bycaf_data, aes(x = Revised_Appreciation_CICES, y = Occupation_Class)) +
   geom_col(fill = "#457888", color = "white") +
   theme_pubclean()
 
-#figuring out grouped barplot
-#appreciation_CICES <- bycaf_data %>%
- # mutate(Revised_Appreciation_CICES = str_split(Revised_Appreciation_CICES, ", ")) %>%
-  #unnest(Revised_Appreciation_CICES) %>%
-  #group_by(Revised_Appreciation_CICES)
+#grouped barplot^
+appreciation_CICES <- bycaf_data %>%
+  mutate(Revised_Appreciation_CICES = str_split(Revised_Appreciation_CICES, ", ")) %>%
+  unnest(Revised_Appreciation_CICES) %>%
+  group_by(Revised_Appreciation_CICES)
   
-#ggplot(bycaf_data, aes(x = appreciation_CICES, y = Occupation_Class, fill = Occupation_Class)) +
-  #geom_bar(stat = "identity") +
-  #labs(title = "Appreciation by Occupation",
-   #    x = "Appreciation", y = "Occupation") +
-  #theme_pubclean() +
-  #scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5","#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
-  #theme( 
-   # axis.text.y = element_blank(),
-    #axis.ticks.y = element_blank()
-  #) +
-  #theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.9))
+ggplot(appreciation_CICES, aes(x = Revised_Appreciation_CICES, y = Occupation_Class, fill = Occupation_Class)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Appreciation by Occupation",
+       x = "Appreciation", y = "Occupation") +
+  theme_pubclean() +
+  scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5","#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
+  theme( 
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
 
 #X2TOI^
 table(bycaf_data$Occupation_Class, bycaf_data$Revised_Appreciation_CICES)
