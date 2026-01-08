@@ -262,11 +262,6 @@ ggplot(bycaf_data) +
     axis.ticks.y = element_blank()
   )
 
-#barplot^
-ggplot(bycaf_data, aes(x = Revised_Appreciation_CICES, y = Occupation_Class)) +
-  geom_col(fill = "#457888", color = "white") +
-  theme_pubclean()
-
 #grouped barplot^
 appreciation_CICES <- bycaf_data %>%
   mutate(Revised_Appreciation_CICES = str_split(Revised_Appreciation_CICES, ", ")) %>%
