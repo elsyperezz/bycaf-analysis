@@ -213,10 +213,6 @@ ggplot(b5map_data) +
   )
 
 #Barplot - gender vs use
-ggplot(b5map_data, aes(x = Gender, y = Revised_Use)) +
-  geom_col(fill = "#457888", color = "white") +
-  theme_pubclean()
-
 ggplot(b5map_data, aes(x = Gender, y = Revised_Use, fill = Revised_Use)) +
   geom_bar(stat = "identity") +
   labs(title = "Use by Gender",
