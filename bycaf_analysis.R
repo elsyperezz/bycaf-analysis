@@ -187,7 +187,7 @@ proportion_visit <- bycaf_data %>%
 ## -------- Visualizations ------------------------
 #Boxplot of age vs value
 age_value_boxplot <- bycaf_data %>%
-  mutate(Value_B4 = str_split(Value_B4, ",")) %>%
+  mutate(Value_B4 = str_split(Value_B4, ", ")) %>%
   unnest(Value_B4) %>%
    filter(!is.na(Value_B4), !is.na(Age_A1)) %>%
   group_by(Value_B4)
