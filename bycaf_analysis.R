@@ -11,6 +11,9 @@ bycaf_data <- read_excel("bycaf_data.xlsx", na = c("", "NA"))
 b5map_data <- read_excel("bycaf_data.xlsx", sheet = "B5Map")
 c2map_data <- read_excel("bycaf_data.xlsx", sheet = "C2Map")
 
+## Define color palette -------------------
+palette <- c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5", "#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")
+
 ## -------- Calculate frequencies ------------------------
 # Frequency of common previous area of living ------------------------
 df_common_living <- bycaf_data %>%
@@ -179,7 +182,7 @@ ggplot(age_value_boxplot, aes(x = `Value_B4`, y = `Age_A1`)) +
 ggplot(b5map_data) +
   geom_mosaic(aes(x = product(Gender), fill = Revised_Use)) +
   theme_pubclean() +
-  scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5", "#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
+  scale_fill_manual(values = palette) +
   labs(x = "Gender", y = "Use of Creek") +
   theme(
     axis.text.y = element_blank(),
@@ -194,7 +197,7 @@ ggplot(b5map_data, aes(x = Gender, y = Revised_Use, fill = Revised_Use)) +
     x = "Gender", y = "Use of Creek"
   ) +
   theme_pubclean() +
-  scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5", "#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
+  scale_fill_manual(values = palette) +
   theme(
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
@@ -204,7 +207,7 @@ ggplot(b5map_data, aes(x = Gender, y = Revised_Use, fill = Revised_Use)) +
 ggplot(b5map_data) +
   geom_mosaic(aes(x = product(Area_Residence), fill = Revised_Use)) +
   theme_pubclean() +
-  scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5", "#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
+  scale_fill_manual(values = palette) +
   labs(x = "Area of Residence", y = "Use of Creek") +
   theme(
     axis.text.y = element_blank(),
@@ -219,7 +222,7 @@ ggplot(b5map_data, aes(x = Area_Residence, y = Revised_Use, fill = Revised_Use))
     x = "Area of Residence", y = "Use of Creek"
   ) +
   theme_pubclean() +
-  scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5", "#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
+  scale_fill_manual(values = palette) +
   theme(
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
@@ -234,7 +237,7 @@ ggplot(appreciation_CICES) +
   geom_mosaic(aes(x = product(Revised_Appreciation_CICES), fill = Occupation_Class)) +
   theme_pubclean() +
   labs(x = "Appreciation of Creek", y = "Occupation of Residents") +
-  scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5", "#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
+  scale_fill_manual(values = palette) +
   theme(
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
@@ -248,12 +251,11 @@ ggplot(appreciation_CICES, aes(x = Revised_Appreciation_CICES, y = Occupation_Cl
     x = "Appreciation", y = "Occupation"
   ) +
   theme_pubclean() +
-  scale_fill_manual(values = c("#d95e5e", "#457888", "#ecd294", "#2db7be", "#66C2A5", "#5E4FA2", "#32888D", "#F46D43", "#9970AB", "#E78AC3")) +
+  scale_fill_manual(values = palette) +
   theme(
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
   )
-
 
 ## -------- Analyses ------------------------
 # X2TOI use by gender --------------------------------
